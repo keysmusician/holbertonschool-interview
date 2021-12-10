@@ -17,7 +17,7 @@ These are the **interview practice questions** I solved at Holberton School.
 
 ## Questions
 ### Trimester 1:
-1. [0x00. Lockboxes]()
+1. [0x00. Lockboxes](https://github.com/keysmusician/holbertonschool-interview/tree/main/0x00-lockboxes)
 
 ## Author
 Justin Masayda [@keysmusician](https://github.com/keysmusician)
