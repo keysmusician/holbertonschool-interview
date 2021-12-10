@@ -7,6 +7,7 @@ A key with the same number as a box opens that box. The first box is unlocked.
 Write a method that determines if all the boxes can be opened.
 """
 
+
 def canUnlockAll(boxes):
     """
     Determines if all lockboxes can be opened.
