@@ -7,11 +7,11 @@
 # 0x00. Lockboxes
 
 ## Table of Contents
-* [About](#about)
+* [Prompt](#prompt)
 * [Files](#files)
 * [Author](#author)
 
-## About
+## Prompt
 You have n number of locked boxes in front of you. Each box is numbered
 sequentially from 0 to n - 1 and each box may contain keys to the other boxes.
 A key with the same number as a box opens that box. The first box is unlocked.

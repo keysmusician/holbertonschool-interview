@@ -7,11 +7,11 @@
 # 0x01. Insert in sorted linked list
 
 ## Table of Contents
-* [About](#about)
+* [Prompt](#prompt)
 * [Files](#files)
 * [Author](#author)
 
-## About
+## Prompt
 Write a function in C that inserts a number into a sorted singly linked list.
 
 ## Files
