@@ -64,29 +64,21 @@ heap_t *heap_insert(heap_t **root, int value)
 		*root = insert;
 		return (insert);
 	}
-
 	height = get_left_height(*root);
-	/* printf("heap_insert: height: %d\n", get_left_height(*root)); */
-
 	max_node_count = pow(2, height) - 1;
-	/* printf("heap_insert: max_node_count: %d\n", max_node_count); */
-
 	node_array = (heap_t **)calloc(max_node_count, sizeof(heap_t *));
 	if (!node_array)
 		return (NULL);
 
 	tree_to_array(*root, node_array, 0);
-	/* printf("heap_insert: node_array:\n"); */
-	/* Loop until the first empty node, or the end of the array */
 	for (; i < max_node_count && node_array[i]; i++)
 		i += 0;
-	/* printf("heap_insert: node_array[%i]->n: %i\n", i, node_array[i]->n); */
 
-	/* parent index is `(i - 2) / 2` for even numbers and `(i - 1) / 2` for odd numbers: */
 	parent = node_array[(i - (2 - i % 2)) / 2];
-	/* printf("heap_insert: insert next element at index %i on node with value: %i\n", i, node_array[(i - 1) / 2]->n); */
-
 	insert = binary_tree_node(parent, value);
+	if (!insert)
+		return (NULL);
+
 	if (i % 2)
 		parent->left = insert;
 	else
