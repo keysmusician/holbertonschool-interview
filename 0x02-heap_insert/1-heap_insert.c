@@ -1,7 +1,5 @@
 #include "binary_trees.h"
 #include <stdlib.h>
-#include <math.h>
-/* #include <stdio.h> */
 
 /**
  * get_left_height - Get the height of a binary tree's left-most branch
@@ -65,7 +63,7 @@ heap_t *heap_insert(heap_t **root, int value)
 		return (insert);
 	}
 	height = get_left_height(*root);
-	max_node_count = pow(2, height) - 1;
+	max_node_count = (1 << height) - 1;
 	node_array = (heap_t **)calloc(max_node_count, sizeof(heap_t *));
 	if (!node_array)
 		return (NULL);
