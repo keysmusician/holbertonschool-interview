@@ -12,7 +12,7 @@
 * [Author](#author)
 
 ## Prompt
-Write a function in C that inserts a number into a sorted singly linked list.
+Write a function that inserts a value into a Max Binary Heap.
 
 ## Files
 * `0-binary_tree_node.c`
