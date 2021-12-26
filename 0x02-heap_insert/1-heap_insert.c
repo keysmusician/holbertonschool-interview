@@ -69,8 +69,8 @@ heap_t *heap_insert(heap_t **root, int value)
 		return (NULL);
 
 	tree_to_array(*root, node_array, 0);
-	for (; i < max_node_count && node_array[i]; i++)
-		i += 0;
+	while (i < max_node_count && node_array[i])
+		i++;
 
 	parent = node_array[(i - (2 - i % 2)) / 2];
 	insert = binary_tree_node(parent, value);
@@ -89,5 +89,6 @@ heap_t *heap_insert(heap_t **root, int value)
 		insert = parent;
 		parent = parent->parent;
 	}
+	free(node_array);
 	return (insert);
 }
