@@ -76,7 +76,6 @@ heap_t *heap_insert(heap_t **root, int value)
 	insert = binary_tree_node(parent, value);
 	if (!insert)
 		return (NULL);
-
 	if (i % 2)
 		parent->left = insert;
 	else
