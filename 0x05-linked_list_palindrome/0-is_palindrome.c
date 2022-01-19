@@ -1,6 +1,4 @@
 #include "lists.h"
-/* DELETE */
-#include <stdio.h>
 
 /**
  * is_palindrome - Determines if a singly linked list is a palindrome.
@@ -9,37 +7,42 @@
  */
 int is_palindrome(listint_t **head)
 {
-    int length = 0, index = 0, *compare = NULL;
-    listint_t *node = NULL;
+	int length = 0, index = 0, *compare = NULL;
+	listint_t *node = NULL;
 
-    if (!head || !*head)
-        return 0;
-    node = *head;
+	if (!head || !*head)
+		return (0);
+	node = *head;
 
-    /* Find the length of the LL */
-    while (node) {
-        length++;
-        node = node->next;
-    }
+	/* Find the length of the LL */
+	while (node)
+	{
+		length++;
+		node = node->next;
+	}
 
-    /* Remember the first half of the LL in reverse order */
-    compare = (int *)calloc(length / 2, sizeof(int));
-    index = length / 2;
-    for (node = *head; node && index; node = node->next) {
-        compare[index - 1] = node->n;
-        index--;
-    }
+	/* Remember the first half of the LL in reverse order */
+	compare = (int *)calloc(length / 2, sizeof(int));
+	index = length / 2;
+	for (node = *head; node && index; node = node->next)
+	{
+		compare[index - 1] = node->n;
+		index--;
+	}
 
-    if (length % 2 == 1 )
-        node = node->next;
+	if (length % 2 == 1)
+		node = node->next;
 
-    /* Compare the array with the LL */
-    for (index = 0; index < length && node; index++) {
-        printf("is_palindrome: comparing node->n:'%d' compare[%d]: %d\n", node->n, index, compare[index]);
-        if (node->n != compare[index])
-            return 0;
-        node = node->next;
-    }
-
-    return (1);
+	/* Compare the array with the LL */
+	for (index = 0; index < length && node; index++)
+	{
+		if (node->n != compare[index])
+		{
+			free(compare);
+			return (0);
+		}
+		node = node->next;
+	}
+	free(compare);
+	return (1);
 }
