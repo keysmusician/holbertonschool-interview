@@ -7,7 +7,8 @@
  */
 int is_palindrome(listint_t **head)
 {
-	int length = 0, index = 0, *compare = NULL;
+	int length = 0, index = 0;
+	int compare[1000000];
 	listint_t *node = NULL;
 
 	if (!head || !*head)
@@ -22,7 +23,6 @@ int is_palindrome(listint_t **head)
 	}
 
 	/* Remember the first half of the LL in reverse order */
-	compare = (int *)calloc(length / 2, sizeof(int));
 	index = length / 2;
 	for (node = *head; node && index; node = node->next)
 	{
@@ -38,11 +38,9 @@ int is_palindrome(listint_t **head)
 	{
 		if (node->n != compare[index])
 		{
-			free(compare);
 			return (0);
 		}
 		node = node->next;
 	}
-	free(compare);
 	return (1);
 }
