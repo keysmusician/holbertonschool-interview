@@ -39,7 +39,7 @@ int is_palindrome(listint_t **head)
 {
 	int result = 1;
 
-	if (!head || !*head)
+	if (!head)
 		return (0);
 	recursive_check(*head, *head, &result);
 	return (result);
