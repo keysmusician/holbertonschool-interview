@@ -16,6 +16,7 @@ def handle_sigint(signal, frame):
         print('{}: {}'.format(code, count))
     exit()
 
+
 signal.signal(signal.SIGINT, handle_sigint)
 
 while True:
@@ -36,4 +37,3 @@ while True:
             print('{}: {}'.format(code, count))
 
     line_number += 1
-
