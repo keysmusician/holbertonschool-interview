@@ -1,30 +1,34 @@
 #!/usr/bin/python3
 """Reads stdin line by line and computes metrics."""
 import sys
+import signal
 
-line_number = 1
-total_file_size = 0
-code_counts = dict()
 
-while True:
-    line = sys.stdin.readline()\
-                .replace('"GET /projects/260 HTTP/1.1"', '', 1)\
-                .replace('- [', '', 1)\
-                .replace(']', '', 1)
-    try:
-        IP_address, date, time, status_code, file_size = line.split()
-        total_file_size += int(file_size)
-        if code_counts.get(int(status_code)):
-            code_counts[int(status_code)] += 1
-        else:
-            code_counts[int(status_code)] = 1
+counter = 0
+filesize = 0
+codes = [200, 301, 400, 401, 403, 404, 405, 500]
+coded = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
 
-    except ValueError:
-        pass
-
-    if line_number % 10 == 0:
-        print('File size:', total_file_size)
-        for code, count in sorted(code_counts.items()):
-            print('{}: {}'.format(code, count))
-
-    line_number += 1
+try:
+    for line in sys.stdin:
+        words = line.split()
+        try:
+            filesize += int(words[-1])
+            code = int(words[-2])
+            coded[code] += 1
+            counter += 1
+        except Exception:
+            continue
+        if counter == 10:
+            print("File size: {}".format(filesize))
+            for num in range(len(codes)):
+                if coded[int(codes[num])] > 0:
+                    print(str(codes[num]) + ": " + str(coded[int(codes[num])]))
+            counter = 0
+except Exception:
+    pass
+finally:
+    print("File size: {}".format(filesize))
+    for num in range(len(codes)):
+        if coded[int(codes[num])] > 0:
+            print(str(codes[num]) + ": " + str(coded[int(codes[num])]))
