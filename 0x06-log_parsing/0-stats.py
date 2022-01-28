@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 from collections import Counter
-import signal
 from sys import stdin
 
 
@@ -10,14 +9,14 @@ total_file_size = 0
 code_counts = Counter()
 
 
-def handle_sigint(signal, frame):
-    print('File size:', total_file_size)
-    for code, count in sorted(code_counts.items()):
-        print('{}: {}'.format(code, count))
-    exit()
+# def handle_sigint(signal, frame):
+#     print('File size:', total_file_size)
+#     for code, count in sorted(code_counts.items()):
+#         print('{}: {}'.format(code, count))
+#     exit()
 
 
-signal.signal(signal.SIGINT, handle_sigint)
+# signal.signal(signal.SIGINT, handle_sigint)
 
 while True:
     line = stdin.readline()\
