@@ -1,13 +1,13 @@
 #!/usr/bin/python3
-from sys import stdin
-
+"""Reads stdin line by line and computes metrics."""
+import sys
 
 line_number = 1
 total_file_size = 0
 code_counts = dict()
 
 while True:
-    line = stdin.readline()\
+    line = sys.stdin.readline()\
                 .replace('"GET /projects/260 HTTP/1.1"', '', 1)\
                 .replace('- [', '', 1)\
                 .replace(']', '', 1)
