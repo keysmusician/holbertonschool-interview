@@ -4,21 +4,15 @@
   </a>
 </p>
 
-# Machine Learning
+# Interview Preparation
 [Holberton School's](https://www.holbertonschool.com/) interview practice questions.
 
 ## Table of Contents
 * [About](#about)
-* [Projects](#projects)
 * [Author](#author)
 
 ## About
 These are the **interview practice questions** I solved at Holberton School.
-
-## Questions
-### Trimester 1:
-1. [0x00. Lockboxes](https://github.com/keysmusician/holbertonschool-interview/tree/main/0x00-lockboxes)
-2. [0x01. Insert in sorted linked list](https://github.com/keysmusician/holbertonschool-interview/tree/main/0x01-insert_in_sorted_linked_list)
 
 ## Author
 Justin Masayda [@keysmusician](https://github.com/keysmusician)
