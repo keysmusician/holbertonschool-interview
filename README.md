@@ -12,7 +12,7 @@
 * [Author](#author)
 
 ## About
-These are the **interview practice questions** I solved at Holberton School.
+These are the **interview preparation questions** I solved at Holberton School.
 
 ## Author
 Justin Masayda [@keysmusician](https://github.com/keysmusician)
