@@ -1,25 +1,29 @@
+#include "palindrome.h"
+
 /**
- * is_palindrome - Checks whether or not a given unsigned integer is a
- * palindrome
- *
- * @n: A positive integer <= 9,223,372,036,854,775,807.
- *
- * Return: 1 if n is a palindrome, 0 otherwise.
+ * is_palindrome - checks if a number is a palindrome
+ * @n: input number
+ * Return: 1 if true, else 0
  */
 int is_palindrome(unsigned long n)
 {
-	unsigned long div = 1;
-	unsigned long mul = 1;
+	unsigned long int front = 1, back = 10;
+	unsigned long int temp;
 
-	while (n / div)
-		div *= 10;
-	while (div >= 10)
+	if (n < 10)
+		return (1);
+	temp = n;
+	while (temp > 10)
 	{
-		div /= 10;
-		if (n / div % 10 != n / mul % 10)
-			return (0);
-		mul *= 10;
+		temp /= 10;
+		front *= 10;
 	}
-
+	while (front >= back)
+	{
+		if (n / front % 10 != n % back)
+			return (0);
+		front /= 100;
+		n /= 10;
+	}
 	return (1);
 }
