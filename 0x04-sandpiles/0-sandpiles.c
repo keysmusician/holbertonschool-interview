@@ -26,13 +26,12 @@ static void print_grid(int grid[3][3])
  *
  * @grid1: Left 3x3 grid
  * @grid2: Right 3x3 grid
- * @is_stable: Whether or not the grid is stable after addition
+ *
+ * Return: Whether or not the grid is stable after addition
  */
-void sum_grids(int grid1[3][3], int grid2[3][3], int *is_stable)
+int sum_grids(int grid1[3][3], int grid2[3][3])
 {
-	int i = 0, j = 0;
-
-	*is_stable = 1;
+	int i = 0, j = 0, is_stable = 1;
 
 	for (i = 0; i < 3; i++)
 	{
@@ -40,9 +39,10 @@ void sum_grids(int grid1[3][3], int grid2[3][3], int *is_stable)
 		{
 			grid1[i][j] += grid2[i][j];
 			if (grid1[i][j] >= 4)
-				*is_stable = 0;
+				is_stable = 0;
 		}
 	}
+	return (is_stable);
 }
 
 /**
@@ -62,6 +62,29 @@ void clear_grid(int grid[3][3])
 }
 
 /**
+ * set_grid2 - sets grid 2
+ *
+ * @i: grid 1 vertical index
+ * @j: grid 1 horizontal index
+ * @grid2: grid2
+ */
+void set_grid2(int i, int j, int grid2[3][3])
+{
+	int i2 = 0, j2 = 0, n = 0;
+	int i_offset[4] = {0, 0, 1, -1};
+	int j_offset[4] = {1, -1, 0, 0};
+
+	for (n = 0; n < 4; n++)
+	{
+		i2 = i + i_offset[n];
+		j2 = j + j_offset[n];
+		if (i2 >= 0 && j2 >= 0 && i2 < 3 && j2 < 3)
+			grid2[i2][j2] += 1;
+	}
+
+}
+
+/**
  * sandpiles_sum - computes the sum of two sandpiles
  *
  * @grid1: Left 3x3 grid
@@ -70,12 +93,10 @@ void clear_grid(int grid[3][3])
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
 	int i = 0, j = 0, is_stable = 0;
-	int up_i = 0, up_j = 0, down_i = 0, down_j = 0, left_i = 0, left_j = 0,
-		right_i = 0, right_j = 0;
 
 	while (1)
 	{
-		sum_grids(grid1, grid2, &is_stable);
+		is_stable = sum_grids(grid1, grid2);
 		if (is_stable)
 			return;
 		printf("=\n");
@@ -88,22 +109,7 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 				if (grid1[i][j] > 3)
 				{
 					grid1[i][j] -= 4;
-					up_i = i - 1; /* i index */
-					up_j = j; /* j index */
-					if (up_i >= 0 && up_i < 3)
-						grid2[up_i][up_j] += 1;
-					down_i = i + 1; /* i index */
-					down_j = j; /* j index */
-					if (down_i >= 0 && down_i < 3)
-						grid2[down_i][down_j] += 1;
-					left_i = i; /* i index */
-					left_j = j - 1; /* j index */
-					if (left_j >= 0 && left_j < 3)
-						grid2[left_i][left_j] += 1;
-					right_i = i; /* i index */
-					right_j = j + 1; /* j index */
-					if (right_j >= 0 && right_j < 3)
-						grid2[right_i][right_j] += 1;
+					set_grid2(i, j, grid2);
 				}
 			}
 		}
