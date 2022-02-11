@@ -98,11 +98,11 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 						grid2[down_i][down_j] += 1;
 					left_i = i; /* i index */
 					left_j = j - 1; /* j index */
-					if (left_i >= 0 && left_i < 3)
+					if (left_j >= 0 && left_j < 3)
 						grid2[left_i][left_j] += 1;
 					right_i = i; /* i index */
 					right_j = j + 1; /* j index */
-					if (right_i >= 0 && right_i < 3)
+					if (right_j >= 0 && right_j < 3)
 						grid2[right_i][right_j] += 1;
 				}
 			}
