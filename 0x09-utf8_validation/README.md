@@ -4,7 +4,7 @@
   </a>
 </p>
 
-# 0x08. Palindrome integer
+# 0x09. UTF-8 Validation
 
 ## Table of Contents
 * [Prompt](#prompt)
@@ -12,11 +12,10 @@
 * [Author](#author)
 
 ## Prompt
-Write a function that checks whether or not a given unsigned integer is a palindrome.
+Write a method that determines if a given data set represents a valid UTF-8 encoding.
 
 ## Files
-* `0-is_palindrome.c`
-* `palindrome.h`
+* `0-validate_utf8.py`
 * `README.md`
 
 ## Author
