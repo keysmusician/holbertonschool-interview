@@ -18,12 +18,12 @@ def validUTF8(data):
                 # A new character is expected
                 # Count continuation bytes
                 while check_bit & byte:
-                    if continuation_bytes > 3:
-                        # Too many continuation bytes
-                        return False
                     start_multibyte = True
                     continuation_bytes += 1
                     check_bit >>= 1
+                    if continuation_bytes > 3:
+                        # Too many continuation bytes
+                        return False
                 # Byte might be overlong; Count the free bits
                 free_bits = 6 - continuation_bytes
                 if (check_bit - 1) & byte:
