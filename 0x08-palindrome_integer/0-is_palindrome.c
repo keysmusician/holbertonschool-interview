@@ -7,23 +7,19 @@
  */
 int is_palindrome(unsigned long n)
 {
-	unsigned long int front = 1, back = 10;
-	unsigned long int temp;
+	unsigned __int128 div = 1;
+	unsigned __int128 mul = 1;
 
-	if (n < 10)
-		return (1);
-	temp = n;
-	while (temp > 10)
+	while (n / div)
+		div *= 10;
+
+	while (div >= 10)
 	{
-		temp /= 10;
-		front *= 10;
-	}
-	while (front >= back)
-	{
-		if (n / front % 10 != n % back)
+		div /= 10;
+		if (n / div % 10 != n / mul % 10)
 			return (0);
-		front /= 100;
-		n /= 10;
+		mul *= 10;
 	}
+
 	return (1);
 }
