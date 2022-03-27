@@ -12,7 +12,7 @@
 * [Author](#author)
 
 ## Prompt
-Write a function that builds an AVL tree from an array.
+Write a function that builds an AVL tree from a sorted array of unique integers.
 
 ## Files
 * `0-sorted_array_to_avl.c`
