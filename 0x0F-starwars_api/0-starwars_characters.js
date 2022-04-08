@@ -12,7 +12,7 @@ request.get(baseURL + 'films/' + filmID,
       const characterURLS = JSON.parse(body).characters;
       const characterNames = [];
       for (const characterURL of characterURLS) {
-        characterNames.push(printCharacter(characterURL));
+        characterNames.push(getCharacterName(characterURL));
       }
       Promise.all(characterNames).then((names) => {
         for (const name of names) {
@@ -23,7 +23,7 @@ request.get(baseURL + 'films/' + filmID,
   }
 );
 
-function printCharacter (url) {
+function getCharacterName (url) {
   return new Promise((resolve, reject) => {
     if (!url) {
       reject(new Error('bad or missing response'));
