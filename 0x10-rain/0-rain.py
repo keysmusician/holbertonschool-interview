@@ -14,24 +14,17 @@ def rain(walls):
 
     Return: An integer indicating total square units of rainwater retained.
     """
-    grid = []
-    max = 0
-    for n in walls:
-        grid.append([1] * n)
-        max = n if n > max else max
-
-    total = 0
-    for i in range(max):
-        start = False
-        length = 0
-        for j in range(len(walls)):
-            try:
-                if grid[j][i]:
-                    if start:
-                        total += length
-                        length = 0
-                    start = True
-            except IndexError:
-                if start:
-                    length += 1
-    return total
+    total_rain = 0
+    if walls:
+        for i in range(max(walls) * len(walls)):
+            x, y = i % len(walls), i // len(walls)
+            if x == 0:
+                collect_water, rain = False, 0
+            if walls[x] > y:
+                if collect_water:
+                    total_rain += rain
+                    rain = 0
+                collect_water = True
+            elif collect_water:
+                    rain += 1
+    return total_rain
