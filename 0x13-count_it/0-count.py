@@ -3,7 +3,7 @@
 Write a recursive function that queries the Reddit API, parses the title of all
 hot articles, and prints a sorted count of given keywords.
 """
-from collections import Counter
+import collections
 import requests
 
 
@@ -11,18 +11,21 @@ def count_words(subreddit, word_list):
     """
     Prints a sorted count of given keywords found in Reddit's hot articles.
     """
-    word_count = Counter()
+    word_count = collections.Counter()
+
 
     def count_recursion(after=None):
+        """ Recursion for `count_words`. """
         nonlocal word_count
-        url = f'http://www.reddit.com/r/{subreddit}/hot.json'
+        url = 'http://www.reddit.com/r/{}/hot.json'.format(subreddit)
         headers = {'User-Agent': '0x13 Count It!'}
         parameters = {
             'after': after,
             'limit': 100,
             'show': 'all'
             }
-        response = requests.get(url, headers=headers, params=parameters)
+        response = requests.get(
+            url, headers=headers, params=parameters)
         if not response.ok:
             return
         response = response.json()
