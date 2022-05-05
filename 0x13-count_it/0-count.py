@@ -6,7 +6,7 @@ hot articles, and prints a sorted count of given keywords.
 import requests
 
 
-def count_words(subreddit, word_list, after=None, depth=0,
+def count_words(subreddit, word_list=[], after=None, depth=0,
                 word_count={}):
     """
     Prints a sorted count of given keywords found in Reddit's hot articles.
@@ -32,6 +32,6 @@ def count_words(subreddit, word_list, after=None, depth=0,
         count_words(subreddit, word_list, after, depth + 1, word_count)
 
     if depth == 0:
-        sorted_count = sorted(word_count.items(), key=lambda x:(-x[1], x[0]))
+        sorted_count = sorted(word_count.items(), key=lambda x: (-x[1], x[0]))
         for key, value in sorted_count:
-            print(f'{key}: {value}')
+            print('{}: {}'.format(key, value))
