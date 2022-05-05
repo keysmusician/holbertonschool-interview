@@ -3,12 +3,11 @@
 Write a recursive function that queries the Reddit API, parses the title of all
 hot articles, and prints a sorted count of given keywords.
 """
-import collections
 import requests
 
 
 def count_words(subreddit, word_list, after=None, depth=0,
-                word_count=collections.Counter()):
+                word_count={}):
     """
     Prints a sorted count of given keywords found in Reddit's hot articles.
     """
@@ -26,6 +25,8 @@ def count_words(subreddit, word_list, after=None, depth=0,
         for word in title:
             for search_word in word_list:
                 if word == search_word.lower():
+                    if word_count.get(word) is None:
+                        word_count[word] = 0
                     word_count[word] += 1
     if after:
         count_words(subreddit, word_list, after, depth + 1, word_count)
