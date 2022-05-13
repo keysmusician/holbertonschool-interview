@@ -10,8 +10,14 @@
  */
 int heap_extract(heap_t **root)
 {
+	int root_n;
+
 	if (!root || !*root)
 		return (0);
 
-	return ((*root)->n);
+	root_n = (*root)->n;
+
+
+
+	return (root_n);
 }
