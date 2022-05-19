@@ -41,9 +41,17 @@ void print_string(char *string)
  *
  * @str: A string
  *
- * Return: The length of the string
+ * Return: The number of bytes in the string excluding the null byte
  */
-size_t _strlen(char *str) { return (str[0] ? 1 + _strlen(str + 1) : 0); }
+size_t _strlen(char *str)
+{
+	size_t i = 0;
+
+	while (str[i++])
+		continue;
+
+	return (--i);
+}
 
 /**
  * main - Multiplies two arbitrarily large integers and prints the result
@@ -57,32 +65,29 @@ int main(int argc, char **argv)
 {
 	char *a, *b, digit_a, digit_b, sum;
 	char *result;
-	int i = 0, j, k;
-	size_t result_length, a_length, b_length;
+	int i = 0, j;
+	size_t result_length, a_length, b_length, k;
 
 	if (argc != 3 || !is_number(argv[1]) || !is_number(argv[2]))
 	{
 		print_string("Error");
 		exit(98);
 	}
-
 	a = argv[1];
 	b = argv[2];
 	a_length = _strlen(a);
 	b_length = _strlen(b);
 	result_length = a_length + b_length;
-
 	result = (char *)malloc(result_length);
 	while ((size_t)i < result_length)
 		result[i++] = 0;
-
 	for (i = a_length - 1; i >= 0; i--)
 	{
 		digit_a = a[i] - '0';
 		for (j = b_length - 1; j >= 0; j--)
 		{
 			digit_b = b[j] - '0';
-			k = result_length - 1 - (b_length - 1 - j) - (a_length - 1 - i);
+			k = result_length - 1 - (b_length - j - 1) - (a_length - i - 1);
 			result[k] += digit_a * digit_b;
 			for (sum = result[k]; sum > 9; sum = result[k])
 			{
@@ -92,10 +97,10 @@ int main(int argc, char **argv)
 		}
 	}
 	for (i = k; (size_t)i < result_length; i++)
-		result[i] += '0';
-
+		result[i] += '0'; /* Convert integers to ASCII */
+	while (result[k] == '0' && k < result_length - 1)
+		k++; /* Ignore leading zeros */
 	print_string(result + k);
 	free(result);
-
 	return (EXIT_SUCCESS);
 }
