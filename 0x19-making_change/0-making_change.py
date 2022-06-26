@@ -42,6 +42,7 @@ def makeChange(coins, total):
 
             if coin_count >= 0:
                 total += coin
+
         return FAIL
 
     return make_change(0)
