@@ -35,12 +35,13 @@ def makeChange(coins, total):
             result = make_change(coin_index + 1)
             if result != FAIL:
                 return coin_count + result
+            elif coin_index + 1 >= len(coins):
+                break
 
             coin_count -= 1
 
             if coin_count >= 0:
                 total += coin
-
         return FAIL
 
     return make_change(0)
