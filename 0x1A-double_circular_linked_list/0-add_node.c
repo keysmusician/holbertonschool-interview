@@ -42,6 +42,7 @@ List *add_node_end(List **list, char *str)
 					(*list)->next = new_node;
 					new_node->prev = *list;
 					new_node->next = *list;
+
 				}
 			else
 			/* There is a next node; The list is not circular */
@@ -86,70 +87,9 @@ List *add_node_end(List **list, char *str)
  */
 List *add_node_begin(List **list, char *str)
 {
-	List *temp, *new_node = NULL;
-	char *str_copy;
-
-	if (!list || !str)
-	/* There is no list or no string */
-		return (NULL);
-
-	/* Initialize a new node: */
-	new_node = (List *)malloc(sizeof(List));
-	str_copy = strdup(str);
-	if (!new_node || !str_copy)
-	/* Memory allocation failed */
-		return (NULL);
-	new_node->str = str_copy;
-	new_node->next = NULL;
-	new_node->prev = NULL;
-
-	if (!*list)
-	/* There is a list, but no head node: */
+	List *new_node = add_node_end(list, str);
+	if (new_node)
 		*list = new_node;
-	else
-	/* There is a head node */
-	{
-		if (!(*list)->prev)
-		/* ...but no previous node */
-		{
-			if (!(*list)->next)
-			/* ...and no next node */
-				{
-					/* The head node is the only node; add the new node */
-					(*list)->prev = new_node;
-					(*list)->next = new_node;
-					new_node->prev = *list;
-					new_node->next = *list;
-				}
-			else
-			/* There is a next node; The list is not circular */
-			{
-				free(new_node->str);
-				free(new_node);
-				return (NULL);
-			}
-		}
-		else
-		/* There is a previous node */
-		{
-			if (!(*list)->next)
-			/* ...but no next node; The list is not circular */
-			{
-				free(new_node->str);
-				free(new_node);
-				return (NULL);
-			}
-			else
-			/* There is a next and previous node */
-			{
-				temp = (*list)->next;
-				(*list)->next = new_node;
-				new_node->prev = *list;
-				new_node->next = temp;
-				temp->prev = new_node;
-			}
-		}
-	}
 
 	return (new_node);
 }
