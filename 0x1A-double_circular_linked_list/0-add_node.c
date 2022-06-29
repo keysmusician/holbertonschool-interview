@@ -30,8 +30,8 @@ List *add_node_end(List **list, char *str)
 	}
 
 	new_node->str = str_copy;
-	new_node->next = NULL;
-	new_node->prev = NULL;
+	new_node->next = new_node;
+	new_node->prev = new_node;
 
 	if (!*list)
 	/* There is a list, but no head node: */
