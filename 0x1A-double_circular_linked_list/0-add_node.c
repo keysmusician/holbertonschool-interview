@@ -17,10 +17,18 @@ List *add_node_end(List **list, char *str)
 
 	/* Initialize a new node: */
 	new_node = (List *)malloc(sizeof(List));
-	str_copy = strdup(str);
-	if (!new_node || !str_copy)
+	if (!new_node)
 	/* Memory allocation failed */
 		return (NULL);
+
+	str_copy = strdup(str);
+	if (!str_copy)
+	/* Memory allocation failed */
+	{
+		free(new_node);
+		return (NULL);
+	}
+
 	new_node->str = str_copy;
 	new_node->next = NULL;
 	new_node->prev = NULL;
