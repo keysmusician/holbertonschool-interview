@@ -18,6 +18,8 @@ void radix_sort(int *array, size_t size)
 	char increase_digit_place;
 	size_t i;
 
+	if (!array || size < 2)
+		return;
 	array_copy = (int *)malloc(sizeof(int) * size);
 	if (!array_copy)
 		return;
@@ -49,7 +51,6 @@ void radix_sort(int *array, size_t size)
 			histogram[digit]--;
 			array[histogram[digit]] = array_copy[i];
 		} while (i-- > 0);
-
 		print_array(array, size);
 	}
 	free(array_copy);
