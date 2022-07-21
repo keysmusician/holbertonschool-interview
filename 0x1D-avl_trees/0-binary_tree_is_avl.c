@@ -63,7 +63,7 @@ int binary_tree_is_avl(const binary_tree_t *tree)
 
 	tree_info.is_AVL = TRUE;
 
-	if (binary_tree_is_avl_recursion(tree, tree_info).is_AVL == FALSE)
+	if (!tree || binary_tree_is_avl_recursion(tree, tree_info).is_AVL == FALSE)
 		return (FALSE);
 	return (TRUE);
 }
