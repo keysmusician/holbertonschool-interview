@@ -1,40 +1,53 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_is_avl_recursion - Returns the depth of a binary tree
+ * binary_tree_is_avl_recursion - Determines if a binary tree is an AVL tree
  *
  * @tree: A binary tree
+ * @tree_info: A `tree_info` struct containing information about the tree
  *
- * Return: Depth of `tree` or FAIL on failure
+ * Return: Information relevant to the AVL tree status
  */
-int binary_tree_is_avl_recursion(const binary_tree_t *tree)
+tree_info_t binary_tree_is_avl_recursion(
+		const binary_tree_t *tree, tree_info_t tree_info)
 {
-	int left_subtree_height, right_subtree_height;
+	tree_info_t left_subtree_info, right_subtree_info;
 
-	if (!tree)
-		return (0);
+	tree_info.height = 0;
+	if (!tree || tree_info.is_AVL == FALSE)
+		return (tree_info);
 
-	/* Check for valid binary search tree */
-	if (
-		(tree->left && tree->left->n > tree->n) ||
-		(tree->right && tree->right->n < tree->n)
-	)
-		return (FAIL);
+	left_subtree_info = binary_tree_is_avl_recursion(tree->left, tree_info);
+	if (left_subtree_info.is_AVL == FALSE)
+		return (left_subtree_info);
+	right_subtree_info = binary_tree_is_avl_recursion(tree->right, tree_info);
+	if (right_subtree_info.is_AVL == FALSE)
+		return (right_subtree_info);
 
-	left_subtree_height = binary_tree_is_avl_recursion(tree->left);
-	if (left_subtree_height == FAIL)
-		return (FAIL);
-	right_subtree_height = binary_tree_is_avl_recursion(tree->right);
-	if (right_subtree_height == FAIL)
-		return (FAIL);
+	if (left_subtree_info.height - right_subtree_info.height > 1 ||
+		right_subtree_info.height - left_subtree_info.height > 1
+	) /* Check subtree heights differ by no more than 1 */
+		tree_info.is_AVL = FALSE;
+	else
+		tree_info.height =
+			left_subtree_info.height > right_subtree_info.height ?
+			left_subtree_info.height + 1 : right_subtree_info.height + 1;
+		tree_info.max = tree->n;
+		tree_info.min = tree->n;
+		if (tree->left)/* Check for valid binary search tree */
+		{
+			if (left_subtree_info.max > tree->n)
+				tree_info.is_AVL = FALSE;
+			tree_info.min = left_subtree_info.min;
+		}
+		if (tree->right)
+		{
+			if (right_subtree_info.min < tree->n)
+				tree_info.is_AVL = FALSE;
+			tree_info.max = right_subtree_info.max;
+		}
 
-	if (left_subtree_height - right_subtree_height > 1 ||
-		right_subtree_height - left_subtree_height > 1)
-		return (FAIL);
-
-	return (left_subtree_height > right_subtree_height ?
-		left_subtree_height + 1 :
-		right_subtree_height + 1);
+	return (tree_info);
 }
 
 /**
@@ -46,7 +59,11 @@ int binary_tree_is_avl_recursion(const binary_tree_t *tree)
  */
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
-	if (binary_tree_is_avl_recursion(tree) == FAIL)
+	tree_info_t tree_info;
+
+	tree_info.is_AVL = TRUE;
+
+	if (binary_tree_is_avl_recursion(tree, tree_info).is_AVL == FALSE)
 		return (FALSE);
 	return (TRUE);
 }

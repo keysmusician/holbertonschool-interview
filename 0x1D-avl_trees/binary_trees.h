@@ -1,11 +1,27 @@
 #ifndef BINARY_TREES_H
-# define BINARY_TREES_H
+#define BINARY_TREES_H
 
 #include <stddef.h>
 
 #define TRUE 1
 #define FALSE 0
-#define FAIL -1
+typedef char bool_t;
+
+/**
+ * struct tree_info - Information about a binary tree
+ *
+ * @is_AVL: Whether the tree is a valid AVL tree
+ * @height: The height of the tree
+ * @min: The minimum value in the tree
+ * @max: The maximum value in the tree
+ */
+typedef struct tree_info
+{
+	bool_t is_AVL;
+	int height;
+	int min;
+	int max;
+} tree_info_t;
 
 /**
  * struct binary_tree_s - Binary tree node
@@ -17,10 +33,10 @@
  */
 struct binary_tree_s
 {
-    int n;
-    struct binary_tree_s *parent;
-    struct binary_tree_s *left;
-    struct binary_tree_s *right;
+	int n;
+	struct binary_tree_s *parent;
+	struct binary_tree_s *left;
+	struct binary_tree_s *right;
 };
 
 typedef struct binary_tree_s binary_tree_t;
