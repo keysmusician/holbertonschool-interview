@@ -24,9 +24,8 @@ tree_info_t binary_tree_is_avl_recursion(
 	if (right_subtree_info.is_AVL == FALSE)
 		return (right_subtree_info);
 
-	if (left_subtree_info.height - right_subtree_info.height > 1 ||
-		right_subtree_info.height - left_subtree_info.height > 1
-	) /* Check subtree heights differ by no more than 1 */
+	/* Check subtree heights differ by no more than 1 */
+	if (abs(left_subtree_info.height - right_subtree_info.height) > 1)
 		tree_info.is_AVL = FALSE;
 	else
 		tree_info.height =
@@ -36,13 +35,13 @@ tree_info_t binary_tree_is_avl_recursion(
 		tree_info.min = tree->n;
 		if (tree->left)/* Check for valid binary search tree */
 		{
-			if (left_subtree_info.max > tree->n)
+			if (left_subtree_info.max >= tree->n)
 				tree_info.is_AVL = FALSE;
 			tree_info.min = left_subtree_info.min;
 		}
 		if (tree->right)
 		{
-			if (right_subtree_info.min < tree->n)
+			if (right_subtree_info.min <= tree->n)
 				tree_info.is_AVL = FALSE;
 			tree_info.max = right_subtree_info.max;
 		}

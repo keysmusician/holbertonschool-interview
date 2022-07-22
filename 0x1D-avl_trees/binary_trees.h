@@ -2,6 +2,7 @@
 #define BINARY_TREES_H
 
 #include <stddef.h>
+#include <stdlib.h>
 
 #define TRUE 1
 #define FALSE 0
