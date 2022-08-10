@@ -3,8 +3,10 @@
 
 #define TRUE 1
 #define FALSE 0
+#define DEBUG FALSE
 
 typedef int index;
+typedef char boolean;
 
 int regex_match(char const *str, char const *pattern);
 
