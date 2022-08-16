@@ -4,7 +4,7 @@
   </a>
 </p>
 
-# 0x20. RegEx
+# 0x21. Substring with concatenated words
 
 ## Table of Contents
 * [Prompt](#prompt)
@@ -12,25 +12,23 @@
 * [Author](#author)
 
 ## Prompt
-Write a function that checks whether a given pattern matches a given string.
+Write a function that finds all the possible substrings containing a list of words, within a given string.
 
-Prototype: `int regex_match(char const *str, char const *pattern);`
+Prototype: `int *find_substring(char const *s, char const **words, int nb_words, int *n);`
 
-- `str` is the string to scan
-- `pattern` is the regular expression
+- `s` is the string to scan.
+- `words` is the array of words all substrings must be a concatenation arrangement of.
+- `nb_words` is the number of elements in the array words.
+- `n` holds the address at which to store the number of elements in the returned array.
 
-Your function must return `1` if the pattern matches the string, or `0` if it doesn’t.
-
-`str` can be empty, and can contain any ASCII character except for '.' and '*'.
-
-`pattern` can be empty, and can contain any ASCII character, including '.' and '\*'. The regular expression matching must support the characters '.' and '\*'.
-- '.' matches any single character
-- '*' matches zero or more of the preceding pattern character
-
+Your function must return an allocated array, storing each index in `s`, at which a substring was found. If no solution is found, `NULL` can be returned.
+All words in the array words are the same length.
+A valid substring of `s` is the concatenation of each word in words exactly once and without any intervening characters.
 
 ## Files
-* `regex.c`
-* `regex.h`
+* `main.c`
+* `substring.c`
+* `substring.h`
 * `README.md`
 
 ## Author
