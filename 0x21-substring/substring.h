@@ -5,8 +5,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#define or ||
-#define and &&
 #define TRUE (char)1
 #define FALSE 0
 

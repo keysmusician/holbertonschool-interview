@@ -57,7 +57,7 @@ boolean substring_matches(
  * concatenation arrangement of. All words must be used once in the
  * concatenation
  * @nb_words: The number of strings in `words`
- * @param: The address at which to store the number of elements in the returned
+ * @n: The address at which to store the number of elements in the returned
  * array
  *
  * Return: Each index in `s` at which any concatenation of all words in `words`
@@ -69,7 +69,7 @@ int *find_substring(char const *s, char const **words, int nb_words, int *n)
 	boolean_list s_indexes;
 	int *match_indexes, word_length;
 
-	if (!s or !words or !nb_words or !n)
+	if (!s || !words || !nb_words || !n)
 		return (NULL);
 
 	*n = 0;
@@ -79,7 +79,7 @@ int *find_substring(char const *s, char const **words, int nb_words, int *n)
 
 	for (s_ = 0; s[s_]; s_++)
 	{
-		if (s_ > search_end_ and *n == 0)
+		if (s_ > search_end_ && (*n) == 0)
 			return (NULL);
 		if (substring_matches(s + s_, words, nb_words, word_length))
 		{
