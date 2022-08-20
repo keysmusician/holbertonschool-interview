@@ -75,7 +75,7 @@ int *find_substring(char const *s, char const **words, int nb_words, int *n)
 	*n = 0;
 	word_length = strlen(words[0]);
 	search_end_ = (int)strlen(s) - word_length * nb_words;
-	s_indexes = calloc(search_end_, sizeof(char));
+	s_indexes = calloc(search_end_ + 1, sizeof(char));
 
 	for (s_ = 0; s[s_]; s_++)
 	{
