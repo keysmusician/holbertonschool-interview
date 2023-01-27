@@ -45,12 +45,14 @@ Returns: Address of the new node, or NULL on failure
 
 ## Author
 Justin Masayda [@keysmusician](https://github.com/keysmusician)
-<pre align="center">
+<div align="center">
+<pre>
         _   _       _   _   _       _   _       _   _   _     
     ___//|_//|_____//|_//|_//|_____//|_//|_____//|_//|_//|___ 
    /  /// ///  /  /// /// ///  /  /// ///  /  /// /// ///  / |
   /  ||/ ||/  /  ||/ ||/ ||/  /  ||/ ||/  /  ||/ ||/ ||/  / / 
  /___/___/___/___/___/___/___/___/___/___/___/___/___/___/ /  
  |___|___|___|___|___|___|___|___|___|___|___|___|___|___|/   
-
+ 
 </pre>
+</div>

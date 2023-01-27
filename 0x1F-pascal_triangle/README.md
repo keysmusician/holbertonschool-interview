@@ -23,12 +23,14 @@ Create a function `def pascal_triangle(n):` that returns a list of lists of inte
 
 ## Author
 Justin Masayda [@keysmusician](https://github.com/keysmusician)
-<pre align="center">
+<div align="center">
+<pre>
         _   _       _   _   _       _   _       _   _   _     
     ___//|_//|_____//|_//|_//|_____//|_//|_____//|_//|_//|___ 
    /  /// ///  /  /// /// ///  /  /// ///  /  /// /// ///  / |
   /  ||/ ||/  /  ||/ ||/ ||/  /  ||/ ||/  /  ||/ ||/ ||/  / / 
  /___/___/___/___/___/___/___/___/___/___/___/___/___/___/ /  
  |___|___|___|___|___|___|___|___|___|___|___|___|___|___|/   
-
+ 
 </pre>
+</div>
